@@ -5,8 +5,8 @@ const TipCalculator = () => {
   const [tip, setTip] = useState(18)
   const [people, setPeople] = useState(1)
 
-  const totalTip = (bill * (tip * 0.01)).toFixed(2)
-  const tipPerPerson = (totalTip / people).toFixed(2)
+  const totalTip = (bill * tip) / 100
+  const tipPerPerson = totalTip / people
 
   return (
     <div>
@@ -14,26 +14,29 @@ const TipCalculator = () => {
       <input
         type='number'
         id='bill'
+        min={0}
         value={bill}
-        onChange={(e) => setBill(e.target.value)}
+        onChange={(e) => setBill(parseInt(e.target.value))}
       />
       <label htmlFor='tip'>Tip Percentage</label>
       <input
         type='number'
         id='tip'
+        min={0}
         value={tip}
-        onChange={(e) => setTip(e.target.value)}
+        onChange={(e) => setTip(parseInt(e.target.value))}
       />
       <label htmlFor='people'>Number of People</label>
       <input
         type='number'
         id='people'
+        min={1}
         value={people}
-        onChange={(e) => setPeople(e.target.value)}
+        onChange={(e) => setPeople(parseInt(e.target.value))}
       />
 
-      <p>Total tip: ${totalTip}</p>
-      <p>Tip Per Person: ${tipPerPerson} </p>
+      <p>Total Tip: {isNaN(totalTip) ? '-' : `$${totalTip.toFixed(2)}`}</p>
+      <p>Tip Per Person: {isNaN(tipPerPerson) ? '-' : `$${tipPerPerson.toFixed(2)}`} </p>
     </div>
   )
 }
