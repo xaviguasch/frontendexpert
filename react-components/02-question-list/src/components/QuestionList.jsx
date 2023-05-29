@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
+import categories from './Categories'
+
 import { dataQuestions } from '../data/question'
 import { dataSubmissions } from '../data/submissions'
+import Categories from './Categories'
 
 const getQuestionsByCategory = (qs) => {
   const qsByCat = {}
@@ -34,10 +37,16 @@ const QuestionList = () => {
   const questionsByCategory = getQuestionsByCategory(questions)
   const submissionsByQ = getSubmissionsByQ(submissions)
 
-  console.log(questionsByCategory)
-  console.log(submissionsByQ)
+  return (
+    <div>
+      <h1>QuestionsList</h1>
 
-  return <div>QuestionList</div>
+      <Categories
+        questionsByCategory={questionsByCategory}
+        submissionsByQ={submissionsByQ}
+      />
+    </div>
+  )
 }
 
 export default QuestionList
