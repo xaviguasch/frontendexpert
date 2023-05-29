@@ -2,10 +2,12 @@ import { useState } from 'react'
 
 import './App.css'
 
+import QuestionList from './components/QuestionList'
+
 function App() {
   return (
     <>
-      <h1>Question List</h1>
+      <QuestionList />
     </>
   )
 }
